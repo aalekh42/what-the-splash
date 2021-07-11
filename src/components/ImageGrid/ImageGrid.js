@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './styles.css';
 
@@ -43,4 +44,21 @@ class ImageGrid extends Component {
     }
 }
 
-export default ImageGrid;
+// const mapStateToProps = ({ loading, images, error }) => {
+//     return {
+//         loading,
+//         images,
+//         error,
+//     };
+// };
+
+const mapStateToProps = ({ xyz }) => {
+    return {
+        xyz,
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    null,
+)(ImageGrid);
