@@ -6,27 +6,16 @@ import './styles.css';
 const key = '5f96323678d05ff0c4eb264ef184556868e303b32a2db88ecbf15746e6f25e02';
 
 class ImageGrid extends Component {
-    state = {
-        images: [],
-    };
-
     componentDidMount() {
-        fetch(`https://api.unsplash.com/photos/?client_id=${key}&per_page=28`)
-            .then(res => res.json())
-            .then(images => {
-                this.setState({
-                    images,
-                });
-            });
+        this.props.loadImages();
     }
 
     render() {
-        const { images } = this.state;
-        const { loadImages } = this.props;
+        const { loadImages, images } = this.props;
         return (
             <div className="content">
                 <section className="grid">
-                    {images.map(image => (
+                    {images.images.map(image => (
                         <div
                             key={image.id}
                             className={`item item-${Math.ceil(
@@ -46,19 +35,19 @@ class ImageGrid extends Component {
     }
 }
 
-// const mapStateToProps = ({ loading, images, error }) => {
-//     return {
-//         loading,
-//         images,
-//         error,
-//     };
-// };
-
 const mapStateToProps = ({ images }) => {
     return {
         images,
     };
 };
+
+// const mapStateToProps = state => {
+//     return {
+//         images: state.images.images,
+//         loading: state.images.loading,
+//         error: state.images.error,
+//     };
+// };
 
 const mapDispatchToProps = dispatch => {
     return {

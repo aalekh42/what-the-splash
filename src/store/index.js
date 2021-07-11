@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import ImageReducer from '../reducers/ImageReducer';
+import PageReducer from '../reducers/PageReducer';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas';
 const configureStore = () => {
     const rootReducer = combineReducers({
         images: ImageReducer,
+        nextPage: PageReducer,
     });
     const sagaMiddleware = createSagaMiddleware();
     const store = createStore(

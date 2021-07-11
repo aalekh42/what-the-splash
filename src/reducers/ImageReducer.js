@@ -24,13 +24,13 @@ const ImageReducer = (state = InitialState, action) => {
             return {
                 ...state,
                 loading: false,
-                ...action.images,
+                images: action.images,
             };
         case IMAGES_LOAD_FAILURE:
             return {
                 ...state,
                 loading: false,
-                ...action.error,
+                error: action.error,
             };
         default:
             return state;
