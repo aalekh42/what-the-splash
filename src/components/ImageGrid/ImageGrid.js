@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { loadImages } from '../../Actions/imageActions';
 import './styles.css';
 
 const key = '5f96323678d05ff0c4eb264ef184556868e303b32a2db88ecbf15746e6f25e02';
@@ -22,6 +22,7 @@ class ImageGrid extends Component {
 
     render() {
         const { images } = this.state;
+        const { loadImages } = this.props;
         return (
             <div className="content">
                 <section className="grid">
@@ -39,6 +40,7 @@ class ImageGrid extends Component {
                         </div>
                     ))}
                 </section>
+                <button onClick={() => loadImages()}>Load MOre</button>
             </div>
         );
     }
@@ -52,13 +54,19 @@ class ImageGrid extends Component {
 //     };
 // };
 
-const mapStateToProps = ({ xyz }) => {
+const mapStateToProps = ({ images }) => {
     return {
-        xyz,
+        images,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadImages: () => dispatch(loadImages()),
     };
 };
 
 export default connect(
     mapStateToProps,
-    null,
+    mapDispatchToProps,
 )(ImageGrid);

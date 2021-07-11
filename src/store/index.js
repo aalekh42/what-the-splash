@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas';
 const configureStore = () => {
     const rootReducer = combineReducers({
-        xyz: ImageReducer,
+        images: ImageReducer,
     });
     const sagaMiddleware = createSagaMiddleware();
     const store = createStore(

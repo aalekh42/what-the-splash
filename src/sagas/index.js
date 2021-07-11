@@ -1,13 +1,13 @@
 import { takeEvery, put } from 'redux-saga/effects';
+import { IMAGES_LOAD, IMAGES_LOAD_FAILURE } from '../constants/ActionTypes';
 
 //worker saga
 function* handleImages() {
-    console.log('hello from worker saga');
-    yield put({ type: 'FETCH_USERS_SUCCESS' });
+    console.log('fetching images from saga');
 }
 //watcher saga
 function* rootSaga() {
-    yield takeEvery('HELLO_GUYS', handleImages);
+    yield takeEvery(IMAGES_LOAD, handleImages);
     console.log('Hello world');
 }
 //watcher saga -> action ->worker saga
